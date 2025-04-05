@@ -1,94 +1,71 @@
-import Button from "../components/button";
+import Button from "../components/HomeButton";
 import GoogleLogin from "./GoogleLogin";
+import BranchBox from "../components/BranchBox"; // Import BranchBox
 import { auth } from "../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-
 const Home: React.FC = () => {
-    const [user] = useAuthState(auth)
-    const isLoggedIn = !!user;
+  const [user] = useAuthState(auth);
+  const isLoggedIn = !!user;
 
-    const handleStatClick = () => {
-        if (!isLoggedIn) {
-            alert("Login to continue")
-        }
-        else {
-            alert("do some stuff")
-        }
+  const handleStatClick = () => {
+    if (!isLoggedIn) {
+      alert("Login to continue");
+    } else {
+      alert("do some stuff");
     }
+  };
 
-      return (
+  return (
     <div className="min-h-screen bg-[var(--color-primary)] text-white p-4">
-      <header className="flex justify-between items-center mb-8">
-        <div>
-            {/* logo here */}
+      <header className="grid grid-cols-3 items-center mb-8">
+        <div className="justify-start">{/* logo here */}</div>
+        <div className="flex justify-center text-center p-4 mx-1">
+          <h1 className="text-6xl font-bold text-[var(--color-secondary)]">
+            {isLoggedIn ? "Level 6 Adept Engineer" : "Level X Unkown..."}
+          </h1>
         </div>
-        <div className="flex-grow text-center p-4 mx-1">
-          <h1 className="text-6xl font-bold text-[var(--color-secondary)]">{isLoggedIn ?"Level 6 Adept Engineer": "Level X Unkown..."}</h1>
-        </div>
-        {/* This is your login/logout button corner */}
-        <div className="flex items-center">
-            <GoogleLogin />
+        <div className="flex justify-end items-center">
+          <GoogleLogin />
         </div>
       </header>
       <div className="grid grid-cols-3 gap-2 justify-centre justify-items-center mb-8">
         <div>
-            <Button text="Talent Tree" onClick={() => alert("clicked")}></Button>
+          <Button text="Talent Tree" onClick={() => alert("clicked")} />
         </div>
         <div>
-            <Button text="Select Title" onClick={() => alert("clicked")}></Button>
+          <Button text="Select Title" onClick={() => alert("clicked")} />
         </div>
-        <div> 
-            <Button text="Completed Quests" onClick={() => alert("clicked")}></Button>
+        <div>
+          <Button
+            text="Completed Quests"
+            onClick={() => alert("clicked")}
+          />
         </div>
       </div>
 
       {/* Body: Stats Section */}
       {/* If not logged in, we apply opacity and disable pointer events */}
       <div
-        className={`grid gap-4 ${
+        className={`grid gap-8 ${
           !isLoggedIn ? "opacity-50 pointer-events-none" : ""
         }`}
       >
-        {/* Example of a stat item */}
-        <div
-          className="flex items-center bg-[var(--color-secondary)] rounded p-4 cursor-pointer"
+        <BranchBox
+          text="Strength"
           onClick={handleStatClick}
-        >
-          <img
-            src="/path/to/icon1.png"
-            alt="Strength icon"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="mr-auto">Strength</span>
-          <button className="bg-white text-black rounded px-2 py-1">+</button>
-        </div>
-
-        <div
-          className="flex items-center bg-[var(--color-secondary)] rounded p-4 cursor-pointer"
+          icon="icons/weight-lifting-up.png"
+        />
+        <BranchBox
+          text="Knowledge"
           onClick={handleStatClick}
-        >
-          <img
-            src="/path/to/icon2.png"
-            alt="Strength icon"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="mr-auto">Strength</span>
-          <button className="bg-white text-black rounded px-2 py-1">+</button>
-        </div>
-
-        <div
-          className="flex items-center bg-[var(--color-secondary)] rounded p-4 cursor-pointer"
+          icon="icons/book-aura.png"
+        />
+        <BranchBox
+          text="Health"
           onClick={handleStatClick}
-        >
-          <img
-            src="/path/to/icon3.png"
-            alt="Strength icon"
-            className="w-6 h-6 mr-2"
-          />
-          <span className="mr-auto">Strength</span>
-          <button className="bg-white text-black rounded px-2 py-1">+</button>
-        </div>
+          icon="icons/health-potion.png"
+        />
       </div>
     </div>
   );
