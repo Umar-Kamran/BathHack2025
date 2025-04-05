@@ -6,7 +6,7 @@ type buttonProps = {
 const Button = ({ text, onClick }: buttonProps) => {
     return (
         <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-secondary hover:bg-[var(--color-tertiary)] text-[var(--color-primary)] font-bold py-2 px-4 rounded duration-100 shadow-lg"
             onClick={onClick}
         >
             {text}

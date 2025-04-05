@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+    --color-primary: #292F36;   /* Gunmetal */
+    --color-secondary: #49A078; /* Jungle Green */
+    --color-tertiary: #ffffff;  /* Cambridge Blue */
+  }
+  
+  /* Optional: define some custom utility classes */
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
+  .bg-tertiary {
+    background-color: var(--color-tertiary);
+
+  }
