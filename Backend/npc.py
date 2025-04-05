@@ -66,7 +66,7 @@ class Npc:
         response = self.openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=messages,
-            max_tokens=200,
+            max_tokens=150,
             temperature=0.7,
         )
         print("Response from OpenAI API:", response)  # Debugging line to check the API response

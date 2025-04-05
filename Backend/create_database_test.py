@@ -1,19 +1,21 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
+import datetime
 
 # Initialize the Firebase Admin SDK with your service account key file.
-cred = credentials.Certificate("env/serviceAccount.json")  # Replace with your key file path
+cred = credentials.Certificate("env/serviceAccount.json")  # Replace with your actual key file path
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
 
-# Define test users data
+# Define test users with titles in the user document.
 test_users = [
     {
         "userId": "user1",
         "displayName": "Alice",
         "userLevel": 2,
         "currentExperience": 150,
+        "titles": ["Epic Adventurer", "Master Explorer"],
         "branches": [
             {
                 "branchId": "adventure",
@@ -47,10 +49,11 @@ test_users = [
         ]
     },
     {
-        "userId": "user2",
+        "userId": "8AJGDGuUoubk3uqDxhHPKzqvGl13",
         "displayName": "Bob",
         "userLevel": 3,
         "currentExperience": 250,
+        "titles": ["Mystery Solver"],
         "branches": [
             {
                 "branchId": "mystery",
@@ -97,6 +100,7 @@ test_users = [
         "displayName": "Charlie",
         "userLevel": 1,
         "currentExperience": 50,
+        "titles": ["Mountain Climber", "Explorer"],
         "branches": [
             {
                 "branchId": "exploration",
@@ -121,18 +125,20 @@ test_users = [
     }
 ]
 
-# Iterate over each test user to create the documents and subcollections
+# Create user documents, and for each user create branches, quests, and conversations.
 for user in test_users:
+    # Create the user document in the "users" collection.
     user_ref = db.collection("users").document(user["userId"])
     user_data = {
         "displayName": user["displayName"],
         "userLevel": user["userLevel"],
-        "currentExperience": user["currentExperience"]
+        "currentExperience": user["currentExperience"],
+        "titles": user.get("titles", [])
     }
     user_ref.set(user_data)
-    print(f"Created user document for {user['displayName']}")
+    print(f"Created user document for {user['displayName']} with titles: {user_data['titles']}")
 
-    # Create branches for the user
+    # Create branches for the user.
     for branch in user.get("branches", []):
         branch_ref = user_ref.collection("branches").document(branch["branchId"])
         branch_data = {
@@ -142,16 +148,21 @@ for user in test_users:
         branch_ref.set(branch_data)
         print(f"  Created branch document '{branch['branchId']}' for {user['displayName']}")
 
-        # Create quests subcollection for the branch
+        # Create quests subcollection for the branch.
         for quest in branch.get("quests", []):
-            quest_ref = branch_ref.collection("quests").document()  # Auto-generated quest ID
+            quest_ref = branch_ref.collection("quests").document()  # Auto-generated quest ID.
             quest_ref.set(quest)
             print(f"    Added quest '{quest['taskTitle']}' in branch '{branch['branchId']}' for {user['displayName']}")
 
-        # Create conversations subcollection for the branch
+        # Create conversations subcollection for the branch.
         for convo in branch.get("conversations", []):
-            convo_ref = branch_ref.collection("conversations").document()  # Auto-generated message ID
-            convo_ref.set(convo)
+            convo_ref = branch_ref.collection("conversations").document()  # Auto-generated conversation ID.
+            conversation_data = {
+                "sender": convo["sender"],
+                "messageText": convo["messageText"],
+                "timestamp": datetime.datetime.utcnow().isoformat()  # Store timestamp as an ISO formatted string.
+            }
+            convo_ref.set(conversation_data)
             print(f"    Added conversation message from '{convo['sender']}' in branch '{branch['branchId']}' for {user['displayName']}")
 
 print("Database setup complete with test users, branches, quests, and conversations!")
