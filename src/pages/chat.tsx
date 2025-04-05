@@ -69,7 +69,7 @@ const Chat: React.FC = () => {
     };
     setMessages((prev) => [...prev, userMessage]);
 
-    // Prepare the data for the Flask API, passing only conversation history and NPC name.
+    // Prepare the data for the Flask API.
     const requestData = {
       npc_name: npcName,
       prompt: inputValue.trim(),
@@ -110,10 +110,17 @@ const Chat: React.FC = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      {/* Chat window container */}
-      <div className="flex flex-col w-full max-w-md h-[80vh] bg-white shadow-lg rounded-md overflow-hidden">
-        {/* Chat header displaying the NPC name */}
-        <div className="px-4 py-2 bg-gray-200 text-gray-800 font-semibold">
+      {/* Chat view container with background image */}
+      <div
+        className="flex flex-col w-full max-w-md h-[80vh] shadow-lg rounded-md overflow-hidden"
+        style={{
+          backgroundImage: "url('src/assets/characterImages/umar.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Chat header displaying the NPC name using primary colour */}
+        <div className="px-4 py-2 bg-[#292f36] text-white font-semibold">
           {npcName}
         </div>
 
@@ -129,8 +136,8 @@ const Chat: React.FC = () => {
                 <div
                   className={`rounded-xl p-3 max-w-xs ${
                     isAi
-                      ? "bg-gray-200 text-gray-800"
-                      : "bg-blue-500 text-white"
+                      ? "bg-[#9cc5a1] text-[#292f36]" // AI messages: tertiary background, primary text
+                      : "bg-[#49a078] text-white"       // User messages: secondary background, white text
                   }`}
                 >
                   {message.text}
@@ -144,7 +151,7 @@ const Chat: React.FC = () => {
         <div className="flex p-3 border-t border-gray-200">
           <input
             type="text"
-            className="flex-1 border border-gray-300 rounded-l-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 border border-[#49a078] rounded-l-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[#49a078] text-white"
             placeholder="Type a message..."
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
@@ -153,7 +160,7 @@ const Chat: React.FC = () => {
             }}
           />
           <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600"
+            className="bg-[#292f36] text-white px-4 py-2 rounded-r-md hover:bg-[#1f242d]"
             onClick={handleSendMessage}
           >
             Send
