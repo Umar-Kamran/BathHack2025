@@ -17,8 +17,10 @@ class conversation:
             str: The NPC's response.
         """
         response = self.npc.generate_response(prompt, previous_messages, quests, mode)
-        self.npc.add_to_chat({"user":prompt})
-        self.npc.add_to_chat({"npc":response})
+        # response = "test"
+        self.npc.add_to_chat(f"user:{prompt}\n")
+        self.npc.add_to_chat(f"npc:{response}\n")
+        print(f"chat history: {self.npc.chat}")
 
         return response
     

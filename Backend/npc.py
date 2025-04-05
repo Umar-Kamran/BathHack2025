@@ -79,4 +79,4 @@ class Npc:
         Parameters:
             message (dict): A dictionary containing the message to add.
         """
-        self.chat.append(message)
+        self.chat += (message)
