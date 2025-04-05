@@ -1,10 +1,11 @@
 import Button from "../components/HomeButton";
-import GoogleLogin from "./GoogleLogin";
+import GoogleLogin from "../components/GoogleLogin";
 import BranchBox from "../components/BranchBox"; // Import BranchBox
 import { auth } from "../lib/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
+import TitleSelect from "../components/TitleSelect"; 
 
 type PlayerData = {
   displayName: string;
@@ -17,6 +18,8 @@ const Home: React.FC = () => {
   const [user] = useAuthState(auth);
   const isLoggedIn = !!user;
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
+  const [selectedTitle, setSelectedTitle] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
   const db = getFirestore();
 
   const expNeeded = 1000;
@@ -36,7 +39,12 @@ const Home: React.FC = () => {
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-          setPlayerData(docSnap.data() as PlayerData);
+          const data = docSnap.data() as PlayerData;
+          setPlayerData(data);
+          // Set the initial selected title from the player's list
+          if (data.titles && data.titles.length > 0) {
+            setSelectedTitle(data.titles[0]);
+          }
         } else {
           console.error("No player data found.");
         }
@@ -73,7 +81,7 @@ const Home: React.FC = () => {
           <div className="text-center">
             <h1 className="text-6xl font-bold text-[var(--color-secondary)]">
               {isLoggedIn && playerData
-                ? `Level ${playerData.userLevel} ${playerData.titles[0]}`
+                ? `Level ${playerData.userLevel} ${selectedTitle}`
                 : "Level X Unknown..."}
             </h1>
             <div className="mt-4 flex justify-center">
@@ -100,7 +108,7 @@ const Home: React.FC = () => {
         </div>
       </header>
       <div
-        className={`grid grid-cols-3 gap-2 justify-center justify-items-center mb-8 ${
+        className={`grid grid-cols-3 gap-2 justify-center justify-items-center opacity-90 mb-8 ${
           isLoggedIn ? "" : "opacity-50 pointer-events-none"
         }`}
       >
@@ -108,7 +116,7 @@ const Home: React.FC = () => {
           <Button text="Talent Tree" onClick={() => alert("clicked")} />
         </div>
         <div>
-          <Button text="Select Title" onClick={() => alert("clicked")} />
+          <Button text="Select Title" onClick={() => setShowModal(true)} />
         </div>
         <div>
           <Button text="Completed Quests" onClick={() => alert("clicked")} />
@@ -118,7 +126,7 @@ const Home: React.FC = () => {
       {/* Body: Stats Section */}
       {/* If not logged in, we apply opacity and disable pointer events */}
       <div
-        className={`grid gap-8 ${
+        className={`grid gap-8 opacity-90 ${
           !isLoggedIn ? "opacity-50 pointer-events-none" : ""
         }`}
       >
@@ -138,6 +146,15 @@ const Home: React.FC = () => {
           icon="icons/health-potion.png"
         />
       </div>
+
+        {/* Modal for title selection */}
+        {showModal && playerData && (
+            <TitleSelect
+                titles={playerData.titles}
+                onClose={() => setShowModal(false)}
+                onTitleSelect={(title: string) => setSelectedTitle(title)}
+            />
+        )}
     </div>
   );
 };
