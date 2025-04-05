@@ -9,11 +9,12 @@ load_dotenv()
 api_key = os.getenv('API_KEY')
 
 class Npc:
-    def __init__(self, name, chat, role, personality):
+    def __init__(self, name, chat, role, personality, branch):
         self.name = name
         self.chat = chat
         self.role = role
         self.personality = personality
+        self.branch = branch
         self.openai = OpenAI(api_key=api_key, base_url="https://hack.funandprofit.ai/api/providers/openai/v1")
 
     def generate_response(self, prompt, previous_messages=None, quests=None, mode="conversation"):
@@ -31,7 +32,7 @@ class Npc:
         """
         # Build the system instruction
         system_message = (
-            f"You are {self.name}, a {self.role} Greek god with a {self.personality} personality. "
+            f"You are {self.name}, a {self.role} Greek god with a {self.personality} personality. Your task is to assist the user in their journey relating to {self.branch}. "
         )
         
         if mode == "task":

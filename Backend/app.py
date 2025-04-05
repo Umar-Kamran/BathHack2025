@@ -2,6 +2,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import json
 
 # Initialize Firebase Admin with your service account key.
 cred = credentials.Certificate("env/serviceAccount.json")
@@ -55,12 +56,20 @@ def get_conversation():
         else:
             conversation_history.append({"user": text})
     
-    # In this example, we hard-code the NPC name as "Kratos".
-    npc_name = "Kratos"
+    name = "None"
     
+    with open("Backend/gods.txt", "r") as f:
+        gods = json.load(f)
+
+        god_data = gods.get(branch_name)
+
+        if god_data:
+            name = god_data["name"]
+
+
     # Return only the NPC name and conversation history.
     response_data = {
-        "npc_name": npc_name,
+        "npc_name": name,
         "previous_messages": conversation_history
     }
     
