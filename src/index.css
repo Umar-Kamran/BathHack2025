@@ -2,7 +2,7 @@
 
 :root {
     --color-primary: #292F36;   /* Gunmetal */
-    --color-secondary: #49A078; /* Jungle Green */
+    --color-secondary: #49a077e6; /* Jungle Green */
     --color-tertiary: #ffffff;  /* Cambridge Blue */
   }
   
@@ -15,5 +15,4 @@
   }
   .bg-tertiary {
     background-color: var(--color-tertiary);
-
   }
