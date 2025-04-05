@@ -9,6 +9,7 @@ import { doc, getDoc, getFirestore } from "firebase/firestore";
 type PlayerData = {
   displayName: string;
   userLevel: number;
+  titles: string[];
   currentExperience: number;
 };
 
@@ -62,39 +63,44 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--color-primary)] text-white p-4">
+    // min-h-screen bg-[var(--color-primary)] justify-center text-white p-4
+    <div className="min-h-screen bg-[url('/icons/bg.png')] bg-cover bg-center justify-center text-white p-4">
       <header className="grid grid-cols-5 items-center mb-8">
         <div className="justify-start items-center">
           <img src={"icons/raw.png"} alt="icon" className="w-25 h-25 mx-10" />
         </div>
-        <div className="col-span-3 grid grid-rows-2 justify-center text-center p-6 mx-6">
-          <h1 className="text-6xl font-bold text-[var(--color-secondary)] ">
-            {isLoggedIn && playerData
-              ? `Level ${playerData.userLevel} ${playerData.displayName}`
-              : "Level X Unknown..."}
-          </h1>
-          {isLoggedIn && playerData ? (
-              <div className="mt-4 w-full bg-gray-700 rounded-full h-4">
-                <div
-                  className="bg-secondary h-4 rounded-full"
-                  style={{ width: `${expPercent}%` }}
-                ></div>
-              </div>
-            ) : (
-              <div className="mt-4 w-full bg-gray-700 rounded-full h-4">
-                <div
-                  className="bg-gray-500 h-4 rounded-full"
-                  style={{ width: `0%` }}
-                ></div>
-              </div>
-            )}
+        <div className="col-span-3 p-6 mx-6">
+          <div className="text-center">
+            <h1 className="text-6xl font-bold text-[var(--color-secondary)]">
+              {isLoggedIn && playerData
+                ? `Level ${playerData.userLevel} ${playerData.titles[0]}`
+                : "Level X Unknown..."}
+            </h1>
+            <div className="mt-4 flex justify-center">
+              {isLoggedIn && playerData ? (
+                <div className="w-full max-w-lg bg-gray-700 rounded-full h-4">
+                  <div
+                    className="bg-secondary h-4 rounded-full"
+                    style={{ width: `${expPercent}%` }}
+                  ></div>
+                </div>
+              ) : (
+                <div className="w-full max-w-lg bg-gray-700 rounded-full h-4">
+                  <div
+                    className="bg-gray-500 h-4 rounded-full"
+                    style={{ width: `0%` }}
+                  ></div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
         <div className="flex justify-center items-center">
           <GoogleLogin />
         </div>
       </header>
       <div
-        className={`grid grid-cols-3 gap-2 justify-centre justify-items-center mb-8 ${
+        className={`grid grid-cols-3 gap-2 justify-center justify-items-center mb-8 ${
           isLoggedIn ? "" : "opacity-50 pointer-events-none"
         }`}
       >
