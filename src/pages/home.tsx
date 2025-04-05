@@ -6,6 +6,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import TitleSelect from "../components/TitleSelect"; 
+import { useNavigate } from "react-router-dom";
 
 type PlayerData = {
   displayName: string;
@@ -15,6 +16,7 @@ type PlayerData = {
 };
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const isLoggedIn = !!user;
   const [playerData, setPlayerData] = useState<PlayerData | null>(null);
@@ -108,23 +110,21 @@ const Home: React.FC = () => {
         </div>
       </header>
       <div
-        className={`grid grid-cols-3 gap-2 justify-center justify-items-center opacity-90 mb-8 ${
+        className={`grid grid-cols-1 sm:grid-cols-3 gap-4 justify-items-center opacity-90 mb-8 ${
           isLoggedIn ? "" : "opacity-50 pointer-events-none"
         }`}
       >
-        <div>
+        <div className="w-full">
           <Button text="Talent Tree" onClick={() => alert("clicked")} />
         </div>
-        <div>
+        <div className="w-full">
           <Button text="Select Title" onClick={() => setShowModal(true)} />
         </div>
-        <div>
+        <div className="w-full">
           <Button text="Completed Quests" onClick={() => alert("clicked")} />
         </div>
       </div>
-
-      {/* Body: Stats Section */}
-      {/* If not logged in, we apply opacity and disable pointer events */}
+        {/* Branch boxes for stats */}
       <div
         className={`grid gap-8 opacity-90 ${
           !isLoggedIn ? "opacity-50 pointer-events-none" : ""
@@ -132,7 +132,7 @@ const Home: React.FC = () => {
       >
         <BranchBox
           text="Strength"
-          onClick={handleStatClick}
+          onClick={() => navigate("/strength")}
           icon="icons/weight-lifting-up.png"
         />
         <BranchBox

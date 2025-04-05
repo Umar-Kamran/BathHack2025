@@ -1,8 +1,8 @@
-import { useState } from 'react'
 import Home from './pages/home'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import GoogleLogin from './components/GoogleLogin'
+import Strength from './pages/Strength'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<GoogleLogin />} />
+        <Route path="/strength" element={<Strength />} />
       </Routes>
       <ToastContainer />
     </Router>
