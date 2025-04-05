@@ -15,6 +15,7 @@ const GoogleLogin: React.FC = () => {
             try {
                 const result: UserCredential = await signInWithPopup(auth, provider);
                 console.log(result);
+                console.log("User signed in:", result.user);
                 toast.success("Logged in successfully!", {
                     position: "top-center",
                 });
@@ -29,6 +30,7 @@ const GoogleLogin: React.FC = () => {
         } else {
             try {
                 await signOut(auth);
+                console.log("User signed out");
                 toast.success("Logged out successfully!", {
                     position: "top-center",
                 });
