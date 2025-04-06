@@ -15,16 +15,19 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Chat />} />
         <Route path="/login" element={<GoogleLogin />} />
         <Route path="/strength" element={<Strength />} />
         <Route path="/talent-tree" element={<TalentTreePage />} />
         <Route path="/talent/t_maths" element={<Maths />} />
         <Route path="/talent/t_physics" element={<Physics />} />
         <Route path="/talent/t_chemistry" element={<Chemistry />} />
+<<<<<<< HEAD
         <Route path="/umar" element={<Chat branch="umar" />} />
         <Route path="/neev" element={<Chat branch="neev" />} />
         <Route path="/aadhav" element={<Chat branch="aadhav" />} />
+=======
+>>>>>>> 297f8a927f217dc5dadd69fe17d706d76bb59df6
       </Routes>
       <ToastContainer />
     </Router>
