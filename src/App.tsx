@@ -3,8 +3,9 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import GoogleLogin from './components/GoogleLogin'
 import Strength from './pages/Strength'
+import TalentTreePage from './pages/talentTree'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-
+import Chat from './pages/chat'
 function App() {
 
   return (
