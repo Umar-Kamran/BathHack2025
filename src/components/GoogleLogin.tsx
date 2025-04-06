@@ -44,7 +44,7 @@ const GoogleLogin: React.FC = () => {
     };
 
     const classname = user
-        ? "bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded duration-100"
+        ? "bg-[var(--color-secondary)] hover:bg-[#4bba86] text-[var(--color-primary)] font-bold py-2 px-4 rounded duration-100"
         : "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded duration-100";
 
     return (

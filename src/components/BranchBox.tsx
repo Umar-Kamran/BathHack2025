@@ -16,7 +16,7 @@ const BranchBox = ({ text, onClick, icon }: branchboxProps) => {
                 className="w-12 h-12 mr-2"
             />
             <span className="mr-auto">{text}</span>
-            <button className="bg-primary border border-[var(--color-tertiary)] text-[var(--color-tertiary)] rounded-full px-2 py-1">+</button>
+            <button className="bg-primary border border-[var(--color-tertiary)] text-[var(--color-tertiary)] rounded-4xl px-2 py-1 items-center">+</button>
         </div>
     );
 }
