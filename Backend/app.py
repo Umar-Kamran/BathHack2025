@@ -10,7 +10,7 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["*"])  # Allow all origins for CORS
 
 @app.route('/get_conversation', methods=['POST'])
 def get_conversation():
@@ -170,4 +170,4 @@ def get_talent_tree():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=4040)
