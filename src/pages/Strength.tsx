@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ChatModal from "../components/chatModel";
 import {
   getFirestore,
   collection,
@@ -33,6 +34,11 @@ const Strength: React.FC = () => {
   const [completingQuests, setCompletingQuests] = useState<string[]>([]);
   const db = getFirestore();
   const navigate = useNavigate();
+  const [showChat, setShowChat] = useState(false);
+
+    const onChatClick = () => {
+        setShowChat(!showChat);
+    };
 
   useEffect(() => {
     if (!user) return;
@@ -118,14 +124,25 @@ const Strength: React.FC = () => {
     <div className="min-h-screen bg-[url('/icons/bg.png')] bg-cover bg-center text-white p-4">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
-        <div className="mb-4">
-          <Button text="Back" onClick={() => navigate(-1)} />
+        <div className="mb-4 grid grid-cols-5 gap-4">
+          <div className="col-span-3 shadow-xl shadow-black">
+            <Button text="Back" onClick={() => navigate(-1)} />
+          </div>
+          <div className="col-span-2 flex items-center justify-left bg-[var(--color-secondary)] hover:text-white duration-200 text-[var(--color-primary)] text-3xl rounded py-3 px-20 cursor-pointer shadow-xl shadow-black"
+            onClick={onChatClick}>
+            <img
+              src={"icons/chat-bubble.png"}
+              alt="icon"
+              className="w-9 h-9 mr-2"
+            />
+            <span>Chat</span>
+          </div>
         </div>
         <h1 className="text-4xl font-bold mb-4 text-center text-[var(--color-secondary)]">
           Active Strength Quests:
         </h1>
         {quests.length === 0 ? (
-          <p>No active quests found.</p>
+          <div className="text-xl text-[var(--color-tertiary)] text-center">No active quests found.</div>
         ) : (
           <div className="w-full flex flex-col space-y-4">
             {quests.map((quest) => {
@@ -163,6 +180,9 @@ const Strength: React.FC = () => {
             })}
           </div>
         )}
+
+        {/* chat component */}
+        {showChat && <ChatModal onClose={() => setShowChat(false)} />}
       </div>
     </div>
   );

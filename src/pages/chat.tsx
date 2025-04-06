@@ -109,7 +109,7 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center">
       {/* Chat view container with background image */}
       <div
         className="flex flex-col w-full max-w-md h-[80vh] shadow-lg rounded-md overflow-hidden"
