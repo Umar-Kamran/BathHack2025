@@ -154,7 +154,8 @@ const Strength: React.FC = () => {
                   {/* Checkbox for marking quest as complete */}
                   <input
                     type="checkbox"
-                    className="absolute top-2 right-2 w-6 h-6 cursor-pointer"
+                    style={{ accentColor: "var(--color-primary)"}}
+                    className="absolute top-2 right-2 w-6 h-6 cursor-pointer text-[var(--color-secondary)] rounded-full shadow-lg"
                     onChange={() => handleComplete(quest.questId)}
                   />
                 </div>
