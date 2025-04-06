@@ -17,7 +17,7 @@ class conversation:
         
         self.npc = Npc(name, chat, role, personality, branch)
 
-    def generate_response(self, prompt, previous_messages=None, quests=None, mode="conversation"):
+    def generate_response(self, prompt, previous_messages=None, quests=None,):
         """
         Generate a response from the NPC based on the conversation context. adds the user and npc messages to the chat history.
 
@@ -36,10 +36,10 @@ class conversation:
                 messages.append({"role": "assistant", "content": message["npc"]})
             elif message.get("user"):
                 messages.append({"role": "user", "content": message["user"]})
-        print(messages)
-        response = self.npc.generate_response(prompt, messages, quests, mode)
+        response = self.npc.generate_response(prompt, messages, quests)
         # response = "test"
-        
-
+        print("Response from NPC:", response)
+        for x in response:
+            print(x)
         return response
     

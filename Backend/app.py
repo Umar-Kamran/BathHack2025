@@ -26,6 +26,12 @@ def get_conversation():
     data = request.json
     user_id = data.get("userId")
     branch_name = data.get("branch")
+    if branch_name == "neev" or branch_name == "aadhav" or branch_name == "umar":
+        response_data = {
+        "npc_name": branch_name,
+        "previous_messages": []
+    }
+        return jsonify(response_data)
     
     if not user_id or not branch_name:
         return jsonify({"error": "Missing userId or branch"}), 400
@@ -93,6 +99,32 @@ def generate_response():
     
     # Generate the AI response (dummy logic; replace with your own as needed)
     response_text = conversation_instance.generate_response(prompt, previous_messages)
+
+    if response_text[0] == "conversation":
+        response_text = response_text[1]
+    elif response_text[0] == "task":
+        
+        _,response_text, json_task = response_text
+        print("Task JSON:", json_task)  # Debugging line to check the task JSON structure
+        #add status ="active" to the task json
+        json_task["status"] = "active"
+        
+        # Add the task to Firestore under the user's branch document.
+        task_ref = (
+            db.collection("users")
+              .document(userId)
+              .collection("branches")
+              .document(branch)
+              .collection("quests")
+        )
+        task_ref.add(json_task)  # Add the task JSON to Firestore
+
+        try:
+            print("Task added to Firestore.")
+        except Exception as e:
+            print("Error adding task to Firestore:", e)
+    else:
+        response_text = response_text[1]
     
     # Update Firestore conversation history if userId and branch are provided.
     if userId and branch:

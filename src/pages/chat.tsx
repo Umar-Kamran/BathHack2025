@@ -61,6 +61,7 @@ const Chat: React.FC<chatProps> = ({ branch }) => {
       }
     };
 
+    
     fetchConversationHistory();
   }, [userId, branch]);
 
@@ -121,7 +122,7 @@ const Chat: React.FC<chatProps> = ({ branch }) => {
       <div
         className="flex flex-col w-full max-w-md h-[80vh] shadow-lg rounded-md overflow-hidden"
         style={{
-          backgroundImage: "url('src/assets/characterImages/umar.png')",
+          backgroundImage: `url('src/assets/characterImages/${npcName.toLowerCase()}.png')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}

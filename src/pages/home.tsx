@@ -115,7 +115,7 @@ const Home: React.FC = () => {
         }`}
       >
         <div className="w-full">
-          <Button text="Talent Tree" onClick={() => alert("clicked")} />
+          <Button text="Talent Tree" onClick={() => navigate("/talent-tree")} />
         </div>
         <div className="w-full">
           <Button text="Select Title" onClick={() => setShowModal(true)} />

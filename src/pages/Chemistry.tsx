@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ChatModal from "../components/chatModel";
 import {
   getFirestore,
   collection,
@@ -28,45 +27,53 @@ type Quest = {
 
 const EXP_THRESHOLD = 1000; // required XP for leveling up
 
-const Strength: React.FC = () => {
+const Chemistry: React.FC = () => {
   const [user] = useAuthState(auth);
-  const branch = "strength"; 
   const [quests, setQuests] = useState<Quest[]>([]);
   const [completingQuests, setCompletingQuests] = useState<string[]>([]);
   const db = getFirestore();
   const navigate = useNavigate();
-  const [showChat, setShowChat] = useState(false);
-
-    const onChatClick = () => {
-        setShowChat(!showChat);
-    };
 
   useEffect(() => {
     if (!user) return;
 
     const fetchQuests = async () => {
       try {
-        // Reference: /users/{user.uid}/branches/adventure/quests
-        const questsRef = collection(
+        // Step 1: Fetch the user's unlocked talent quest IDs from their subcollection
+        const userQuestsRef = collection(
           db,
           "users",
           user.uid,
-          "branches",
-          branch, // Change to "strength" if needed.
+          "unlockedTalents",
+          "t_chemistry", // use the appropriate talent id if needed
           "quests"
         );
-        // Query only active quests
-        const questsQuery = query(questsRef, where("status", "==", "active"));
-        const querySnapshot = await getDocs(questsQuery);
-        const questList: Quest[] = [];
-        console.log("Fetched quests:", querySnapshot.docs);
-        querySnapshot.forEach((docSnap) => {
-          questList.push({
-            questId: docSnap.id,
-            ...(docSnap.data() as Omit<Quest, "questId">),
-          });
-        });
-        setQuests(questList);
+        const userQuestsQuery = query(userQuestsRef, where("status", "==", "active"));
+        const userQuestsSnapshot = await getDocs(userQuestsQuery);
+
+        // Step 2: For each quest, fetch its full details from the TALENT_QUESTS collection.
+        const questList = await Promise.all(
+          userQuestsSnapshot.docs.map(async (docSnap) => {
+            const questId = docSnap.id;
+            const talentQuestRef = doc(
+              db,
+              "talents",
+              "t_chemistry", // matching the talent id
+              "talent_quests",
+              questId
+            );
+            const talentQuestSnap = await getDoc(talentQuestRef);
+            if (talentQuestSnap.exists()) {
+              return { questId, ...(talentQuestSnap.data() as Omit<Quest, "questId">) };
+            } else {
+              console.warn("Talent quest not found for id", questId);
+              return null;
+            }
+          })
+        );
+
+        // Filter out any null values
+        setQuests(questList.filter((q) => q !== null) as Quest[]);
       } catch (error) {
         console.error("Error fetching quests: ", error);
       }
@@ -78,27 +85,27 @@ const Strength: React.FC = () => {
   const handleComplete = async (questId: string) => {
     if (!user) return;
     try {
-      // Update the quest's status in Firestore
+      // Update the quest's status in the user's unlocked talent quests collection.
       const questDocRef = doc(
         db,
         "users",
         user.uid,
-        "branches",
-        "adventure",
+        "unlockedTalents",
+        "t_chemistry", // ensure this matches the talent id used above
         "quests",
         questId
       );
       await updateDoc(questDocRef, { status: "completed" });
       console.log("Quest completed:", questId);
 
-      // Find the completed quest to add its xpPoints to the user
+      // Find the completed quest in our state so we know how many XP points to add.
       const completedQuest = quests.find((q) => q.questId === questId);
       if (completedQuest) {
         const userDocRef = doc(db, "users", user.uid);
-        // Increment the user's currentExperience by the quest's xpPoints
+        // Increment the user's currentExperience by the quest's xpPoints.
         await updateDoc(userDocRef, { currentExperience: increment(completedQuest.xpPoints) });
-        
-        // Check if the user's XP meets or exceeds the threshold
+
+        // Check if the user's XP meets or exceeds the threshold.
         const userDocSnap = await getDoc(userDocRef);
         const userData = userDocSnap.data();
         if (userData && userData.currentExperience >= EXP_THRESHOLD) {
@@ -106,11 +113,11 @@ const Strength: React.FC = () => {
           await updateDoc(userDocRef, { userLevel: increment(1) });
           toast.success("Level Up!");
           const remainingXP = userData.currentExperience - EXP_THRESHOLD;
-            await updateDoc(userDocRef, { currentExperience: remainingXP });
+          await updateDoc(userDocRef, { currentExperience: remainingXP });
         }
       }
 
-      // Trigger the slide-away animation
+      // Trigger the slide-away animation.
       setCompletingQuests((prev) => [...prev, questId]);
       setTimeout(() => {
         setQuests((current) => current.filter((q) => q.questId !== questId));
@@ -125,25 +132,14 @@ const Strength: React.FC = () => {
     <div className="min-h-screen bg-[url('/icons/bg.png')] bg-cover bg-center text-white p-4">
       <div className="max-w-4xl mx-auto">
         {/* Back Button */}
-        <div className="mb-4 grid grid-cols-5 gap-4">
-          <div className="col-span-3 shadow-xl shadow-black">
-            <Button text="Back" onClick={() => navigate(-1)} />
-          </div>
-          <div className="col-span-2 flex items-center justify-left bg-[var(--color-secondary)] hover:text-white duration-200 text-[var(--color-primary)] text-3xl rounded py-3 px-20 cursor-pointer shadow-xl shadow-black"
-            onClick={onChatClick}>
-            <img
-              src={"icons/chat-bubble.png"}
-              alt="icon"
-              className="w-9 h-9 mr-2"
-            />
-            <span>Chat</span>
-          </div>
+        <div className="mb-4">
+          <Button text="Back" onClick={() => navigate(-1)} />
         </div>
         <h1 className="text-4xl font-bold mb-4 text-center text-[var(--color-secondary)]">
-          Active Strength Quests:
+          Active Chemistry Quests:
         </h1>
         {quests.length === 0 ? (
-          <div className="text-xl text-[var(--color-tertiary)] text-center">No active quests found.</div>
+          <p>No active quests found.</p>
         ) : (
           <div className="w-full flex flex-col space-y-4">
             {quests.map((quest) => {
@@ -159,7 +155,7 @@ const Strength: React.FC = () => {
                     <div>Duration: {quest.duration} minutes</div>
                     <div className="flex items-center space-x-2">
                       <span className="font-semibold">Tags:</span>
-                      {quest.tags.map((tag, idx) => (
+                      {quest.tags?.map((tag, idx) => (
                         <span
                           key={idx}
                           className="font-normal bg-[var(--color-primary)] text-[var(--color-secondary)] px-2 py-0.5 rounded-md"
@@ -172,7 +168,7 @@ const Strength: React.FC = () => {
                   {/* Checkbox for marking quest as complete */}
                   <input
                     type="checkbox"
-                    style={{ accentColor: "var(--color-primary)"}}
+                    style={{ accentColor: "var(--color-primary)" }}
                     className="absolute top-2 right-2 w-6 h-6 cursor-pointer text-[var(--color-secondary)] rounded-full shadow-lg"
                     onChange={() => handleComplete(quest.questId)}
                   />
@@ -181,12 +177,9 @@ const Strength: React.FC = () => {
             })}
           </div>
         )}
-
-        {/* chat component */}
-        {showChat && <ChatModal onClose={() => setShowChat(false)} branch={branch}/>}
       </div>
     </div>
   );
 };
 
-export default Strength;
+export default Chemistry;

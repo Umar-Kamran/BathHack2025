@@ -219,361 +219,620 @@ for talent in talents_data:
 
 # --- Test Users Data ---
 test_users = [
-    {
-        "userId": "Yo1dpGES7ZOHxKMBTkhDZ7EKPNC2",
-        "displayName": "Umar",
-        "userLevel": 3,
-        "currentExperience": 350,
-        "titles": ["Epic Adventurer", "Master Explorer"],
-        "branches": [
-            {
-                "branchId": "adventure",
-                "branchLevel": 2,
-                "branchXP": 150,
-                "quests": [
-                    {
-                        "taskTitle": "Find the lost sword in the Forbidden Forest",
-                        "xpPoints": 200,
-                        "tags": ["quest", "adventure", "exploration"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Defeat the Dragon of the North",
-                        "xpPoints": 300,
-                        "tags": ["combat", "dragon"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Rescue the Captive Knight from the Dark Tower",
-                        "xpPoints": 250,
-                        "tags": ["rescue", "adventure"],
-                        "status": "active"
-                    }
-                ],
-                "conversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Welcome, brave adventurer! Your journey into the Forbidden Forest begins now. Remember, courage is not the absence of fear, but the triumph over it."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I understand the risks and am ready to face the perils hidden in these dark woods."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Every step forward is a victory. Stay alert and trust your instincts."
-                    }
-                ]
-            },
-            {
-                "branchId": "mystery",
-                "branchLevel": 1,
-                "branchXP": 100,
-                "quests": [
-                    {
-                        "taskTitle": "Investigate the Haunted Ruins of Eldoria",
-                        "xpPoints": 180,
-                        "tags": ["mystery", "investigation"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Decipher the Cryptic Runes on the Ancient Wall",
-                        "xpPoints": 220,
-                        "tags": ["puzzle", "mystery"],
-                        "status": "active"
-                    }
-                ],
-                "conversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Greetings, seeker of truth. The ruins hold secrets that only the brave can uncover."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I have studied ancient texts for years. I will decode these mysteries and bring light to the darkness."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Let your intellect and perseverance guide you through the enigma."
-                    }
-                ]
-            }
+  {
+    "userId": "Yo1dpGES7ZOHxKMBTkhDZ7EKPNC2",
+    "displayName": "Umar",
+    "userLevel": 3,
+    "currentExperience": 350,
+    "titles": ["Epic Adventurer", "Master Explorer"],
+    "branches": [
+      {
+        "branchId": "strength",
+        "branchLevel": 2,
+        "branchXP": 150,
+        "quests": [
+          {
+            "taskTitle": "Do 30 pushups",
+            "xpPoints": 50,
+            "tags": ["strength", "exercise"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Run 2 km",
+            "xpPoints": 70,
+            "tags": ["strength", "cardio"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Hold a plank for 1 minute",
+            "xpPoints": 40,
+            "tags": ["strength", "core"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Perform 20 squats",
+            "xpPoints": 50,
+            "tags": ["strength", "legs"],
+            "status": "active"
+          }
         ],
-        "talents": [
-            {
-                "talentId": "t_physics",
-                "isUnlocked": True,
-                "quests": [
-                    {
-                        "questId": "q_physics1",
-                        "status": "completed"
-                    },
-                    {
-                        "questId": "q_physics2",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Your deep understanding of physical laws empowers you to harness the energy of the universe."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I can feel the power of physics coursing through my veins!"
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Remember, every phenomenon follows a rule—master it, and the cosmos is yours to command."
-                    }
-                ]
-            },
-            {
-                "talentId": "t_chemistry",
-                "isUnlocked": False,
-                "quests": [
-                    {
-                        "questId": "q_chem1",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": []
-            }
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Building strength takes consistent effort. Push your limits safely and enjoy your progress."
+          },
+          {
+            "sender": "User",
+            "messageText": "I feel the burn and I'm ready to push myself harder."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Remember to warm up properly and keep your form in check for maximum benefit."
+          }
         ]
-    },
-    {
-        "userId": "8AJGDGuUoubk3uqDxhHPKzqvGl13",
-        "displayName": "Neev",
-        "userLevel": 4,
-        "currentExperience": 500,
-        "titles": ["Mystery Solver", "Scholar of the Arcane"],
-        "branches": [
-            {
-                "branchId": "mystery",
-                "branchLevel": 3,
-                "branchXP": 250,
-                "quests": [
-                    {
-                        "taskTitle": "Solve the ancient puzzle carved into the Ruins of Tharos",
-                        "xpPoints": 150,
-                        "tags": ["puzzle", "mystery"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Uncover the secret passage beneath the Old Library",
-                        "xpPoints": 200,
-                        "tags": ["exploration", "mystery"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Gather clues about the disappearance of the Royal Heir",
-                        "xpPoints": 180,
-                        "tags": ["investigation", "mystery"],
-                        "status": "active"
-                    }
-                ],
-                "conversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Welcome to the realm of mystery, Bob. Every clue here is a piece of a much larger enigma."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I have honed my deductive skills over the years. I will leave no stone unturned."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Your determination is admirable. Let the pursuit of truth be your guiding light."
-                    }
-                ]
-            },
-            {
-                "branchId": "adventure",
-                "branchLevel": 2,
-                "branchXP": 180,
-                "quests": [
-                    {
-                        "taskTitle": "Venture into the Lost Caverns of Doria",
-                        "xpPoints": 210,
-                        "tags": ["exploration", "adventure"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Defeat the notorious Bandit Leader of the Whispering Woods",
-                        "xpPoints": 230,
-                        "tags": ["combat", "adventure"],
-                        "status": "active"
-                    }
-                ],
-                "conversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "The path ahead is treacherous, but fortune favors the bold. Step forward and conquer your fears."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I trust my skills and experience. I will overcome any obstacle that stands in my way."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Let your bravery ignite the fire of victory within you."
-                    }
-                ]
-            }
+      },
+      {
+        "branchId": "knowledge",
+        "branchLevel": 2,
+        "branchXP": 140,
+        "quests": [
+          {
+            "taskTitle": "Read a chapter of a book",
+            "xpPoints": 60,
+            "tags": ["knowledge", "reading"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Learn 10 new words",
+            "xpPoints": 40,
+            "tags": ["knowledge", "vocabulary"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Watch an educational documentary",
+            "xpPoints": 80,
+            "tags": ["knowledge", "learning"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Solve a brain teaser",
+            "xpPoints": 50,
+            "tags": ["knowledge", "puzzle"],
+            "status": "active"
+          }
         ],
-        "talents": [
-            {
-                "talentId": "t_maths",
-                "isUnlocked": True,
-                "quests": [
-                    {
-                        "questId": "q_maths1",
-                        "status": "completed"
-                    },
-                    {
-                        "questId": "q_maths3",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Your mathematical prowess unlocks new dimensions of reasoning."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "Every equation is a window into the hidden order of the cosmos."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Continue to solve, and let the beauty of numbers guide your path."
-                    }
-                ]
-            },
-            {
-                "talentId": "t_electronics",
-                "isUnlocked": True,
-                "quests": [
-                    {
-                        "questId": "q_elec1",
-                        "status": "completed"
-                    },
-                    {
-                        "questId": "q_elec3",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "You have mastered the basics of electronics; now innovate and create."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I am ready to design circuits that challenge conventional boundaries."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Harness your ingenuity to turn ideas into groundbreaking inventions."
-                    }
-                ]
-            },
-            {
-                "talentId": "t_egypt",
-                "isUnlocked": False,
-                "quests": [
-                    {
-                        "questId": "q_egypt2",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": []
-            }
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Every page you read expands your horizon. Embrace the journey of learning."
+          },
+          {
+            "sender": "User",
+            "messageText": "I love discovering new ideas and challenging my intellect."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Stay curious and let every question lead you to new insights."
+          }
         ]
-    },
-    {
-        "userId": "user3",
-        "displayName": "Charlie",
-        "userLevel": 2,
-        "currentExperience": 200,
-        "titles": ["Rookie Explorer", "Aspiring Scholar"],
-        "branches": [
-            {
-                "branchId": "exploration",
-                "branchLevel": 1,
-                "branchXP": 80,
-                "quests": [
-                    {
-                        "taskTitle": "Map the Uncharted Territory of the Whispering Plains",
-                        "xpPoints": 140,
-                        "tags": ["exploration", "mapping"],
-                        "status": "active"
-                    },
-                    {
-                        "taskTitle": "Discover the Hidden Ruins in the Valley of Shadows",
-                        "xpPoints": 160,
-                        "tags": ["exploration", "adventure"],
-                        "status": "active"
-                    }
-                ],
-                "conversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Welcome, Charlie. The path of exploration is as much about discovering yourself as it is about charting new lands."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I am eager to uncover the secrets of the unknown and learn from every twist and turn on this journey."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Every step you take brings you closer to the mysteries of the world. Keep moving forward."
-                    }
-                ]
-            }
+      },
+      {
+        "branchId": "health",
+        "branchLevel": 1,
+        "branchXP": 100,
+        "quests": [
+          {
+            "taskTitle": "Eat 6 pieces of fruit",
+            "xpPoints": 30,
+            "tags": ["health", "nutrition"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Drink 2 liters of water",
+            "xpPoints": 20,
+            "tags": ["health", "hydration"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Meditate for 15 minutes",
+            "xpPoints": 40,
+            "tags": ["health", "mindfulness"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Take a 30-minute walk",
+            "xpPoints": 50,
+            "tags": ["health", "activity"],
+            "status": "active"
+          }
         ],
-        "talents": [
-            {
-                "talentId": "t_biology",
-                "isUnlocked": True,
-                "quests": [
-                    {
-                        "questId": "q_bio1",
-                        "status": "completed"
-                    },
-                    {
-                        "questId": "q_bio3",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Your connection to the living world deepens with every discovery."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I feel the pulse of nature guiding my every step."
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Let your curiosity drive you to explore the wonders of life."
-                    }
-                ]
-            },
-            {
-                "talentId": "t_compsci",
-                "isUnlocked": False,
-                "quests": [
-                    {
-                        "questId": "q_cs2",
-                        "status": "active"
-                    }
-                ],
-                "unlockedConversations": []
-            }
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Good health is the foundation of all progress. Small healthy choices lead to big changes."
+          },
+          {
+            "sender": "User",
+            "messageText": "I'm committed to making choices that nourish my body and mind."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Keep track of your habits, and soon you'll see the benefits of a balanced lifestyle."
+          }
         ]
-    }
+      }
+    ],
+    "talents": [
+      {
+        "talentId": "t_physics",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_physics1", "status": "active"},
+          {"questId": "q_physics2", "status": "active"},
+          {"questId": "q_physics3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      },
+      {
+        "talentId": "t_maths",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_maths1", "status": "active"},
+          {"questId": "q_maths2", "status": "active"},
+          {"questId": "q_maths3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      },
+      {
+        "talentId": "t_chemistry",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_chem1", "status": "active"},
+          {"questId": "q_chem2", "status": "active"},
+          {"questId": "q_chem3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      },
+      {
+        "talentId": "t_biology",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_bio1", "status": "active"},
+          {"questId": "q_bio2", "status": "active"},
+          {"questId": "q_bio3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      },
+      {
+        "talentId": "t_compsci",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_cs1", "status": "active"},
+          {"questId": "q_cs2", "status": "active"},
+          {"questId": "q_cs3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      },
+      {
+        "talentId": "t_electronics",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_elec1", "status": "active"},
+          {"questId": "q_elec2", "status": "active"},
+          {"questId": "q_elec3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      },
+      {
+        "talentId": "t_egypt",
+        "isUnlocked": True,
+        "quests": [
+          {"questId": "q_egypt1", "status": "active"},
+          {"questId": "q_egypt2", "status": "active"},
+          {"questId": "q_egypt3", "status": "active"}
+        ],
+        "unlockedConversations": []
+      }
+    ]
+  },
+  {
+    "userId": "8AJGDGuUoubk3uqDxhHPKzqvGl13",
+    "displayName": "Neev",
+    "userLevel": 4,
+    "currentExperience": 500,
+    "titles": ["Mystery Solver", "Scholar of the Arcane"],
+    "branches": [
+      {
+        "branchId": "strength",
+        "branchLevel": 3,
+        "branchXP": 200,
+        "quests": [
+          {
+            "taskTitle": "Do 30 pushups",
+            "xpPoints": 50,
+            "tags": ["strength", "exercise"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Run 2 km",
+            "xpPoints": 70,
+            "tags": ["strength", "cardio"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Hold a plank for 1 minute",
+            "xpPoints": 40,
+            "tags": ["strength", "core"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Perform 20 squats",
+            "xpPoints": 50,
+            "tags": ["strength", "legs"],
+            "status": "active"
+          }
+        ],
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Building strength takes consistent effort. Push your limits safely and enjoy your progress."
+          },
+          {
+            "sender": "User",
+            "messageText": "I’m ready to challenge my body with some intense exercises."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Stay focused and remember that every rep counts towards a stronger you."
+          }
+        ]
+      },
+      {
+        "branchId": "knowledge",
+        "branchLevel": 3,
+        "branchXP": 180,
+        "quests": [
+          {
+            "taskTitle": "Read a chapter of a book",
+            "xpPoints": 60,
+            "tags": ["knowledge", "reading"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Learn 10 new words",
+            "xpPoints": 40,
+            "tags": ["knowledge", "vocabulary"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Watch an educational documentary",
+            "xpPoints": 80,
+            "tags": ["knowledge", "learning"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Solve a brain teaser",
+            "xpPoints": 50,
+            "tags": ["knowledge", "puzzle"],
+            "status": "active"
+          }
+        ],
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Every page you read expands your horizon. Embrace the journey of learning."
+          },
+          {
+            "sender": "User",
+            "messageText": "I thrive on challenging my mind and exploring new ideas."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Keep asking questions—each answer is a stepping stone to deeper insight."
+          }
+        ]
+      },
+      {
+        "branchId": "health",
+        "branchLevel": 2,
+        "branchXP": 160,
+        "quests": [
+          {
+            "taskTitle": "Eat 6 pieces of fruit",
+            "xpPoints": 30,
+            "tags": ["health", "nutrition"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Drink 2 liters of water",
+            "xpPoints": 20,
+            "tags": ["health", "hydration"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Meditate for 15 minutes",
+            "xpPoints": 40,
+            "tags": ["health", "mindfulness"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Take a 30-minute walk",
+            "xpPoints": 50,
+            "tags": ["health", "activity"],
+            "status": "active"
+          }
+        ],
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Good health is the foundation of all progress. Small healthy choices lead to big changes."
+          },
+          {
+            "sender": "User",
+            "messageText": "I’m focusing on habits that boost both my energy and well-being."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Excellent! Tracking your hydration and nutrition is key to a balanced lifestyle."
+          }
+        ]
+      }
+    ],
+    "talents": [
+      {
+        "talentId": "t_maths",
+        "isUnlocked": True,
+        "quests": [
+          {
+            "questId": "q_maths1",
+            "status": "completed"
+          },
+          {
+            "questId": "q_maths3",
+            "status": "active"
+          }
+        ],
+        "unlockedConversations": [
+          {
+            "sender": "AI",
+            "messageText": "Your mathematical prowess unlocks new dimensions of reasoning."
+          },
+          {
+            "sender": "User",
+            "messageText": "Every equation is a window into the hidden order of the cosmos."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Continue to solve, and let the beauty of numbers guide your path."
+          }
+        ]
+      },
+      {
+        "talentId": "t_electronics",
+        "isUnlocked": True,
+        "quests": [
+          {
+            "questId": "q_elec1",
+            "status": "completed"
+          },
+          {
+            "questId": "q_elec3",
+            "status": "active"
+          }
+        ],
+        "unlockedConversations": [
+          {
+            "sender": "AI",
+            "messageText": "You have mastered the basics of electronics; now innovate and create."
+          },
+          {
+            "sender": "User",
+            "messageText": "I am ready to design circuits that challenge conventional boundaries."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Harness your ingenuity to turn ideas into groundbreaking inventions."
+          }
+        ]
+      },
+      {
+        "talentId": "t_egypt",
+        "isUnlocked": False,
+        "quests": [
+          {
+            "questId": "q_egypt2",
+            "status": "active"
+          }
+        ],
+        "unlockedConversations": []
+      }
+    ]
+  },
+  {
+    "userId": "user3",
+    "displayName": "Charlie",
+    "userLevel": 2,
+    "currentExperience": 200,
+    "titles": ["Rookie Explorer", "Aspiring Scholar"],
+    "branches": [
+      {
+        "branchId": "strength",
+        "branchLevel": 1,
+        "branchXP": 80,
+        "quests": [
+          {
+            "taskTitle": "Do 30 pushups",
+            "xpPoints": 50,
+            "tags": ["strength", "exercise"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Run 2 km",
+            "xpPoints": 70,
+            "tags": ["strength", "cardio"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Hold a plank for 1 minute",
+            "xpPoints": 40,
+            "tags": ["strength", "core"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Perform 20 squats",
+            "xpPoints": 50,
+            "tags": ["strength", "legs"],
+            "status": "active"
+          }
+        ],
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Building strength is about steady progress. Every workout counts!"
+          },
+          {
+            "sender": "User",
+            "messageText": "I'm excited to get started and see improvements in my fitness."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Keep a consistent schedule and always listen to your body."
+          }
+        ]
+      },
+      {
+        "branchId": "knowledge",
+        "branchLevel": 1,
+        "branchXP": 90,
+        "quests": [
+          {
+            "taskTitle": "Read a chapter of a book",
+            "xpPoints": 60,
+            "tags": ["knowledge", "reading"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Learn 10 new words",
+            "xpPoints": 40,
+            "tags": ["knowledge", "vocabulary"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Watch an educational documentary",
+            "xpPoints": 80,
+            "tags": ["knowledge", "learning"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Solve a brain teaser",
+            "xpPoints": 50,
+            "tags": ["knowledge", "puzzle"],
+            "status": "active"
+          }
+        ],
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Every new fact you learn adds to your wisdom. Keep exploring!"
+          },
+          {
+            "sender": "User",
+            "messageText": "I’m eager to dive into a new book and expand my horizons."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Great! Let your curiosity guide you through every page and puzzle."
+          }
+        ]
+      },
+      {
+        "branchId": "health",
+        "branchLevel": 1,
+        "branchXP": 70,
+        "quests": [
+          {
+            "taskTitle": "Eat 6 pieces of fruit",
+            "xpPoints": 30,
+            "tags": ["health", "nutrition"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Drink 2 liters of water",
+            "xpPoints": 20,
+            "tags": ["health", "hydration"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Meditate for 15 minutes",
+            "xpPoints": 40,
+            "tags": ["health", "mindfulness"],
+            "status": "active"
+          },
+          {
+            "taskTitle": "Take a 30-minute walk",
+            "xpPoints": 50,
+            "tags": ["health", "activity"],
+            "status": "active"
+          }
+        ],
+        "conversations": [
+          {
+            "sender": "AI",
+            "messageText": "Maintaining good health is key to enjoying every adventure."
+          },
+          {
+            "sender": "User",
+            "messageText": "I’m ready to incorporate more healthy habits into my day."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Every small step toward health builds a better tomorrow."
+          }
+        ]
+      }
+    ],
+    "talents": [
+      {
+        "talentId": "t_biology",
+        "isUnlocked": True,
+        "quests": [
+          {
+            "questId": "q_bio1",
+            "status": "completed"
+          },
+          {
+            "questId": "q_bio3",
+            "status": "active"
+          }
+        ],
+        "unlockedConversations": [
+          {
+            "sender": "AI",
+            "messageText": "Your connection to the living world deepens with every discovery."
+          },
+          {
+            "sender": "User",
+            "messageText": "I feel the pulse of nature guiding my every step."
+          },
+          {
+            "sender": "AI",
+            "messageText": "Let your curiosity drive you to explore the wonders of life."
+          }
+        ]
+      },
+      {
+        "talentId": "t_compsci",
+        "isUnlocked": False,
+        "quests": [
+          {
+            "questId": "q_cs2",
+            "status": "active"
+          }
+        ],
+        "unlockedConversations": []
+      }
+    ]
+  }
 ]
 
 
