@@ -304,38 +304,69 @@ test_users = [
                 "talentId": "t_physics",
                 "isUnlocked": True,
                 "quests": [
-                    {
-                        "questId": "q_physics1",
-                        "status": "completed"
-                    },
-                    {
-                        "questId": "q_physics2",
-                        "status": "active"
-                    }
+                    {"questId": "q_physics1", "status": "active"},
+                    {"questId": "q_physics2", "status": "active"},
+                    {"questId": "q_physics3", "status": "active"}
                 ],
-                "unlockedConversations": [
-                    {
-                        "sender": "AI",
-                        "messageText": "Your deep understanding of physical laws empowers you to harness the energy of the universe."
-                    },
-                    {
-                        "sender": "User",
-                        "messageText": "I can feel the power of physics coursing through my veins!"
-                    },
-                    {
-                        "sender": "AI",
-                        "messageText": "Remember, every phenomenon follows a rule—master it, and the cosmos is yours to command."
-                    }
-                ]
+                "unlockedConversations": []
+            },
+            {
+                "talentId": "t_maths",
+                "isUnlocked": True,
+                "quests": [
+                    {"questId": "q_maths1", "status": "active"},
+                    {"questId": "q_maths2", "status": "active"},
+                    {"questId": "q_maths3", "status": "active"}
+                ],
+                "unlockedConversations": []
             },
             {
                 "talentId": "t_chemistry",
-                "isUnlocked": False,
+                "isUnlocked": True,
                 "quests": [
-                    {
-                        "questId": "q_chem1",
-                        "status": "active"
-                    }
+                    {"questId": "q_chem1", "status": "active"},
+                    {"questId": "q_chem2", "status": "active"},
+                    {"questId": "q_chem3", "status": "active"}
+                ],
+                "unlockedConversations": []
+            },
+            {
+                "talentId": "t_biology",
+                "isUnlocked": True,
+                "quests": [
+                    {"questId": "q_bio1", "status": "active"},
+                    {"questId": "q_bio2", "status": "active"},
+                    {"questId": "q_bio3", "status": "active"}
+                ],
+                "unlockedConversations": []
+            },
+            {
+                "talentId": "t_compsci",
+                "isUnlocked": True,
+                "quests": [
+                    {"questId": "q_cs1", "status": "active"},
+                    {"questId": "q_cs2", "status": "active"},
+                    {"questId": "q_cs3", "status": "active"}
+                ],
+                "unlockedConversations": []
+            },
+            {
+                "talentId": "t_electronics",
+                "isUnlocked": True,
+                "quests": [
+                    {"questId": "q_elec1", "status": "active"},
+                    {"questId": "q_elec2", "status": "active"},
+                    {"questId": "q_elec3", "status": "active"}
+                ],
+                "unlockedConversations": []
+            },
+            {
+                "talentId": "t_egypt",
+                "isUnlocked": True,
+                "quests": [
+                    {"questId": "q_egypt1", "status": "active"},
+                    {"questId": "q_egypt2", "status": "active"},
+                    {"questId": "q_egypt3", "status": "active"}
                 ],
                 "unlockedConversations": []
             }

@@ -9,7 +9,7 @@ interface Message {
 
 const Chat: React.FC = () => {
   // Assume these are provided dynamically in your app.
-  const userId = "user1"; // Example test user id
+  const userId = "Yo1dpGES7ZOHxKMBTkhDZ7EKPNC2"; // Example test user id
   const branch = "adventure"; // Example branch name
 
   // Local state for messages and input value.
