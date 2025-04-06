@@ -5,7 +5,7 @@ from flask_cors import CORS
 import json
 
 # Initialize Firebase Admin with your service account key.
-cred = credentials.Certificate("env/serviceAccount.json")
+cred = credentials.Certificate("Backend/env/serviceAccount.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 

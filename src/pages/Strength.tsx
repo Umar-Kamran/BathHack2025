@@ -30,6 +30,7 @@ const EXP_THRESHOLD = 1000; // required XP for leveling up
 
 const Strength: React.FC = () => {
   const [user] = useAuthState(auth);
+  const branch = "adventure";
   const [quests, setQuests] = useState<Quest[]>([]);
   const [completingQuests, setCompletingQuests] = useState<string[]>([]);
   const db = getFirestore();
@@ -182,7 +183,7 @@ const Strength: React.FC = () => {
         )}
 
         {/* chat component */}
-        {showChat && <ChatModal onClose={() => setShowChat(false)} />}
+        {showChat && <ChatModal onClose={() => setShowChat(false)} branch={branch}/>}
       </div>
     </div>
   );

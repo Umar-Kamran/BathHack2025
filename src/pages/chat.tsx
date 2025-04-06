@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../lib/firebase";
 
 // Define the shape of a chat message
+type chatProps = {
+  branch: string;
+}
 interface Message {
   id: number;
   sender: "ai" | "user";
   text: string;
 }
 
-const Chat: React.FC = () => {
+const Chat: React.FC<chatProps> = ({ branch }) => {
   // Assume these are provided dynamically in your app.
-  const userId = "user1"; // Example test user id
-  const branch = "adventure"; // Example branch name
+  const [user] = useAuthState(auth);
+  const userId = user?.uid || null;
+  console.log("User ID:", userId);
+  console.log("Branch:", branch);
 
   // Local state for messages and input value.
   const [messages, setMessages] = useState<Message[]>([]);
