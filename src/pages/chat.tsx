@@ -16,8 +16,6 @@ const Chat: React.FC<chatProps> = ({ branch }) => {
   // Assume these are provided dynamically in your app.
   const [user] = useAuthState(auth);
   const userId = user?.uid || null;
-  console.log("User ID:", userId);
-  console.log("Branch:", branch);
 
   // Local state for messages and input value.
   const [messages, setMessages] = useState<Message[]>([]);
@@ -30,7 +28,7 @@ const Chat: React.FC<chatProps> = ({ branch }) => {
   useEffect(() => {
     const fetchConversationHistory = async () => {
       try {
-        const response = await fetch("http://localhost:5000/get_conversation", {
+        const response = await fetch("http://localhost:4040/get_conversation", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ userId, branch }),
@@ -93,7 +91,7 @@ const Chat: React.FC<chatProps> = ({ branch }) => {
     setInputValue("");
 
     try {
-      const response = await fetch("http://localhost:5000/generate_response", {
+      const response = await fetch("http://localhost:4040/generate_response", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestData),

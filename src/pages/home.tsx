@@ -121,7 +121,7 @@ const Home: React.FC = () => {
           <Button text="Select Title" onClick={() => setShowModal(true)} />
         </div>
         <div className="w-full">
-          <Button text="Completed Quests" onClick={() => alert("clicked")} />
+          <Button text="Completed Quests" onClick={() => navigate("/completed")} />
         </div>
       </div>
         {/* Branch boxes for stats */}
@@ -137,12 +137,12 @@ const Home: React.FC = () => {
         />
         <BranchBox
           text="Knowledge"
-          onClick={handleStatClick}
+          onClick={() => navigate("/knowledge")}
           icon="icons/book-aura.png"
         />
         <BranchBox
           text="Health"
-          onClick={handleStatClick}
+          onClick={() => navigate("/health")}
           icon="icons/health-potion.png"
         />
       </div>
