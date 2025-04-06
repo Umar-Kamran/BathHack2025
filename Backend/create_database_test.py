@@ -256,7 +256,6 @@ test_users = [
             "status": "active"
           }
         ],
-<<<<<<< HEAD
         "conversations": [
           {
             "sender": "AI",
@@ -270,79 +269,6 @@ test_users = [
             "sender": "AI",
             "messageText": "Remember to warm up properly and keep your form in check for maximum benefit."
           }
-=======
-        "talents": [
-            {
-                "talentId": "t_physics",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_physics1", "status": "active"},
-                    {"questId": "q_physics2", "status": "active"},
-                    {"questId": "q_physics3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            },
-            {
-                "talentId": "t_maths",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_maths1", "status": "active"},
-                    {"questId": "q_maths2", "status": "active"},
-                    {"questId": "q_maths3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            },
-            {
-                "talentId": "t_chemistry",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_chem1", "status": "active"},
-                    {"questId": "q_chem2", "status": "active"},
-                    {"questId": "q_chem3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            },
-            {
-                "talentId": "t_biology",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_bio1", "status": "active"},
-                    {"questId": "q_bio2", "status": "active"},
-                    {"questId": "q_bio3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            },
-            {
-                "talentId": "t_compsci",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_cs1", "status": "active"},
-                    {"questId": "q_cs2", "status": "active"},
-                    {"questId": "q_cs3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            },
-            {
-                "talentId": "t_electronics",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_elec1", "status": "active"},
-                    {"questId": "q_elec2", "status": "active"},
-                    {"questId": "q_elec3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            },
-            {
-                "talentId": "t_egypt",
-                "isUnlocked": True,
-                "quests": [
-                    {"questId": "q_egypt1", "status": "active"},
-                    {"questId": "q_egypt2", "status": "active"},
-                    {"questId": "q_egypt3", "status": "active"}
-                ],
-                "unlockedConversations": []
-            }
->>>>>>> 297f8a927f217dc5dadd69fe17d706d76bb59df6
         ]
       },
       {

@@ -14,15 +14,10 @@ interface Message {
 
 const Chat: React.FC<chatProps> = ({ branch }) => {
   // Assume these are provided dynamically in your app.
-<<<<<<< HEAD
   const [user] = useAuthState(auth);
   const userId = user?.uid || null;
   console.log("User ID:", userId);
   console.log("Branch:", branch);
-=======
-  const userId = "Yo1dpGES7ZOHxKMBTkhDZ7EKPNC2"; // Example test user id
-  const branch = "adventure"; // Example branch name
->>>>>>> 297f8a927f217dc5dadd69fe17d706d76bb59df6
 
   // Local state for messages and input value.
   const [messages, setMessages] = useState<Message[]>([]);

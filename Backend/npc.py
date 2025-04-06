@@ -99,7 +99,7 @@ class Npc:
             model="gpt-4o-mini",  # Change from "o3-mini" to "gpt-4o-mini"
             messages=messages,
             max_tokens=150,  # Change from max_completion_tokens to max_tokens
-            temperature=0.7,  # Adjust the temperature for more creative responses
+            temperature=0.7
         )
         print("Response from OpenAI API:", response)  # Debugging line to check the response
         if mode == "task":
