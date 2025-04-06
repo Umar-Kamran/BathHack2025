@@ -120,5 +120,54 @@ def generate_response():
     return jsonify({"response": response_text})
 
 
+def build_talent_tree(talents, unlocked_dict):
+    # Build a dictionary of talentId -> talent object (including children list)
+    talent_map = {}
+    for talent in talents:
+        talent_data = talent.to_dict()
+        talent_data["talentId"] = talent.id
+        # Mark as active if user unlocked it, otherwise false
+        talent_data["isActive"] = unlocked_dict.get(talent.id, False)
+        talent_data["children"] = []
+        talent_map[talent.id] = talent_data
+
+    # Build the tree by linking children talents to their parent
+    tree = []
+    for talent_id, talent_data in talent_map.items():
+        parent_id = talent_data.get("parentTalent")
+        if parent_id and parent_id in talent_map:
+            talent_map[parent_id]["children"].append(talent_data)
+        else:
+            tree.append(talent_data)
+    return tree
+
+@app.route('/get_talent_tree', methods=['POST'])
+def get_talent_tree():
+    data = request.json
+    user_id = data.get("userId")
+    if not user_id:
+        return jsonify({"error": "userId is required"}), 400
+
+    # Query all global talents
+    talents_ref = db.collection("talents")
+    talents_snapshot = talents_ref.stream()
+    talents = list(talents_snapshot)
+
+    # Get the user's unlocked talents from their subcollection "unlockedTalents"
+    unlocked_ref = db.collection("users").document(user_id).collection("unlockedTalents")
+    unlocked_snapshot = unlocked_ref.stream()
+
+    # Build a dict mapping talentId to isUnlocked status.
+    unlocked_dict = {}
+    for doc in unlocked_snapshot:
+        doc_data = doc.to_dict()
+        unlocked_dict[doc.id] = doc_data.get("isUnlocked", False)
+
+    # Build a tree structure of talents
+    talent_tree = build_talent_tree(talents, unlocked_dict)
+
+    return jsonify({"talentTree": talent_tree})
+
+
 if __name__ == '__main__':
     app.run(debug=True)
