@@ -28,9 +28,9 @@ type Quest = {
 
 const EXP_THRESHOLD = 1000; // required XP for leveling up
 
-const Strength: React.FC = () => {
+const Health: React.FC = () => {
   const [user] = useAuthState(auth);
-  const branch = "strength";
+  const branch = "health";
   const [quests, setQuests] = useState<Quest[]>([]);
   const [completingQuests, setCompletingQuests] = useState<string[]>([]);
   const db = getFirestore();
@@ -140,7 +140,7 @@ const Strength: React.FC = () => {
           </div>
         </div>
         <h1 className="text-4xl font-bold mb-4 text-center text-[var(--color-secondary)]">
-          Active Strength Quests:
+          Active Health Quests:
         </h1>
         {quests.length === 0 ? (
           <div className="text-xl text-[var(--color-tertiary)] text-center">No active quests found.</div>
@@ -189,4 +189,4 @@ const Strength: React.FC = () => {
   );
 };
 
-export default Strength;
+export default Health;
